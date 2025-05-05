@@ -35,7 +35,7 @@ impl<R: Runtime> AwaitEvent<R> {
         let app_clone = app.clone();
         // let state_clone_inner = state.clone();
 
-        let listener_id = app.listen(event_name, move |event: Event| {
+        let listener_id = app.once(event_name, move |event: Event| {
             let mut state_unwrapped_inner = state_clone.lock().unwrap();
             state_unwrapped_inner.completed = true;
             let result: DialogResult = serde_json::from_str(event.payload())
@@ -48,10 +48,10 @@ impl<R: Runtime> AwaitEvent<R> {
             if let Some(waker) = state_unwrapped_inner.waker.take() {
                 waker.wake();
             }
-
+            // app_clone.unlisten(listener_id);
         });
 
-        app_clone.unlisten(listener_id);
+        
 
         AwaitEvent::<R> { state, unlisten_id: listener_id, app_handle: app }
     }

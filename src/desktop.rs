@@ -55,20 +55,26 @@ impl<R: Runtime> CustomDialog<R> {
 
 
     println!("Opening dialog '{}' with ID: {}", window_label, dlg_id);
+    println!("event name to listen for: {}", event_name);
+    println!("var is_modal: {}", is_modal.to_string());
 
     // #### PARENT WINDOW DISABLE ####
     if is_modal {
+      println!("Attempting to disable main window");
       if let Some(ref parent) = parent_window {
         let _ = parent.set_enabled(false);
       } else if parent_window_label.is_some() {
         eprintln!("Warning: parent window with label '{}' not found", parent_window_label.unwrap());
       }
+    } else {
+      println!("Not disabling the main window");
     }
     // ###############################
 
     
-
-    let dialog_url = WebviewUrl::App(url.into());
+    // TEMPORARY event from frontend:
+    let dialog_url = WebviewUrl::App(format!("{}?event={}", url, event_name).into());
+    // let dialog_url = WebviewUrl::App(url.into());
 
     let builder = WebviewWindowBuilder::new(&self.app_handle, &window_label, dialog_url);
 

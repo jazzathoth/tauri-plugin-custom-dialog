@@ -1,8 +1,9 @@
-use serde::{Deserialize, Serialize};
+use serde::{self, Deserialize, Serialize};
 use serde_json::Value as JsonValue;
 
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct DialogOptions {
   pub title: Option<String>,
   pub width: Option<f64>,

@@ -6,6 +6,7 @@
   "permissions": [
     "core:default",
     "opener:default",
-    "custom-dialog:allow-start-dialog"
+    "custom-dialog:allow-start-dialog",
+    "core:event:default"
   ]
 }
