@@ -12,7 +12,7 @@ links = "tauri-plugin-custom-dialog"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-tauri = { version = "2.5.1", features = ["tracing"] }
+tauri = { version = "2", features = ["tracing"] }
 serde = {version = "1.0", features = ["derive"]}
 thiserror = "2"
 serde_json = "1"
@@ -20,4 +20,4 @@ uuid = { version = "1.16.0", features = ["v4"] }
 pin-project = "1.1.10"
 
 [build-dependencies]
-tauri-plugin = { version = "2.2.0", features = ["build"] }
+tauri-plugin = { version = "2", features = ["build"] }
