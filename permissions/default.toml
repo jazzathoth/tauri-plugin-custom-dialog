@@ -1,0 +1,17 @@
+[default]
+description = "Default permissions for the plugin"
+permissions = [
+	"allow-ping",
+	"allow-start-dialog",
+	"allow-finish-dialog",
+]
+
+[[permission]]
+identifier="allow-start-dialog"
+description="Enables starting dialog windows with custom_dialog command"
+commands.allow=["start_custom_dialog", "finish_dialog"]
+
+[[permission]]
+identifier="allow-finish-dialog"
+description="allow dialog to call finish_dialog"
+commands.allow=["finish_dialog"]
